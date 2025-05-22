@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      position: relative;
+    }
+
+    /* Background Image */
+    .background-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('baground.jpg'); /* Pastikan file ini ada di folder yang benar */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      opacity: 0.7; /* Transparansi agar tidak terlalu gelap */
+      z-index: -1;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Pink Soft Gradient */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333; /* Agar teks tetap terbaca di atas latar pink */
+    }
+
+    nav {
+      background-color: #ffe6ec; /* Pink sangat lembut */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      position: relative;
+      z-index: 2;
+    }
+
+    nav a {
+      color: #880033; /* Warna teks merah tua untuk kontras */
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91; /* Pink cerah saat hover */
+    }
+
+    /* Hero Section - Hanya Tulisan di Tengah */
+    .hero {
+      position: relative;
+      z-index: 2;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5em;
+      margin: 0;
+      color: #ffffff;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Tetap jelas di atas background */
+    }
+
+    .button-container {
+      text-align: center;
+      margin-top: 30px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .nav-button {
+      display: inline-block;
+      padding: 12px 25px;
+      background-color: #ff9a9e; /* Pink soft */
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .nav-button:hover {
+      background-color: #ff6f91; /* Pink cerah saat hover */
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Background Image -->
+  <div class="background-overlay"></div>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+  <!-- Hero Section - Hanya Tulisan di Tengah -->
+  <section class="hero">
+    <h1>Perlengkapan Mainan Terbaik</h1>
+  </section>
+
+  <!-- Tombol Navigasi -->
+  <div class="button-container">
+    <a href="tentang.html" class="nav-button">Lihat Tentang Kami</a>
+  </div>
+
+</body>
+</html>

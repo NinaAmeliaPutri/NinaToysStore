@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daftar - Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6ec; /* Latar belakang pink lembut */
+      color: #333; /* Warna teks gelap untuk kontras */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Gradient pink soft */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333; /* Teks logo hitam agar terbaca di latar pink */
+    }
+
+    nav {
+      background-color: #fff0f3; /* Navigasi pink sangat muda */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+      width: 100%;
+    }
+
+    nav a {
+      color: #880033; /* Warna navigasi untuk kontras */
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91; /* Hover warna pink cerah */
+    }
+
+    .register-container {
+      max-width: 400px;
+      width: 90%;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff; /* Kartu form putih untuk kontras */
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .register-container h1 {
+      margin-bottom: 20px;
+      font-size: 1.8em;
+      color: #333; /* Judul hitam agar jelas */
+    }
+
+    .form-group {
+      text-align: left;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff0f3; /* Input pink pastel */
+      color: #333;
+      font-size: 1em;
+      outline: none;
+      transition: all 0.3s ease;
+    }
+
+    .form-group input:focus {
+      box-shadow: 0 0 5px #ff6f91; /* Efek fokus pink cerah */
+    }
+
+    .submit-button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      background-color: #ff9a9e;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #ff6f91;
+    }
+
+    .already-account {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .already-account a {
+      color: #ff6f91; /* Link daftar/masuk pink cerah */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .already-account a:hover {
+      color: #cc0052; /* Warna lebih gelap saat hover */
+    }
+
+    /* Ilustrasi atau Logo */
+    .illustration {
+      width: 100%;
+      max-width: 150px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+
+  <!-- Register Section -->
+  <section class="register-container">
+    <h1>Buat Akun Baru</h1>
+
+    <form id="register-form">
+      <div class="form-group">
+        <label for="name">Nama Lengkap</label>
+        <input type="text" id="name" name="name" placeholder="Masukkan nama lengkap" required />
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan email aktif" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan password" required />
+      </div>
+
+      <button type="submit" class="submit-button">Daftar Sekarang</button>
+    </form>
+
+    <div class="already-account">
+      Sudah punya akun? <a href="login.html">Masuk di sini</a>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Simpan data pengguna ke localStorage
+      let users = JSON.parse(localStorage.getItem("users")) || [];
+      users.push({ name, email, password });
+      localStorage.setItem("users", JSON.stringify(users));
+
+      alert("Akun berhasil dibuat! Silakan masuk.");
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>

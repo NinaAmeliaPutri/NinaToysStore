@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Masuk - Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6ec; /* Latar belakang pink lembut */
+      color: #333; /* Warna teks gelap agar terbaca di latar pink */
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Gradient pink soft */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333; /* Warna teks logo untuk kontras */
+    }
+
+    nav {
+      background-color: #fff0f3; /* Navigasi pink sangat muda */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+    }
+
+    nav a {
+      color: #880033; /* Warna navigasi untuk kontras */
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91; /* Hover warna pink cerah */
+    }
+
+    .login-container {
+      max-width: 400px;
+      width: 90%;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff; /* Kartu login putih untuk kontras */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .login-container h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      color: #333;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      background-color: #fff0f3; /* Input pink pastel */
+      color: #333;
+      font-size: 1em;
+      outline: none;
+    }
+
+    .form-group input:focus {
+      box-shadow: 0 0 5px #ff6f91;
+    }
+
+    .submit-button {
+      display: block;
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #ff9a9e;
+      color: black;
+      font-size: 16px;
+      font-weight: bold;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .submit-button:hover {
+      background-color: #ff6f91;
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .register-link a {
+      color: #ff6f91;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s ease;
+    }
+
+    .register-link a:hover {
+      color: #cc0052;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+  <!-- Login Section -->
+  <section class="login-container">
+    <h1>Masuk ke Akun Anda</h1>
+
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="Masukkan email aktif" required />
+      </div>
+
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Masukkan password" required />
+      </div>
+
+      <button type="submit" class="submit-button">Masuk</button>
+    </form>
+
+    <div class="register-link">
+      Belum punya akun? <a href="register.html">Daftar sekarang</a>
+    </div>
+  </section>
+
+  <script>
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+
+      // Simulasi pencocokan data pengguna dari localStorage
+      const users = JSON.parse(localStorage.getItem("users")) || [];
+      const user = users.find(u => u.email === email && u.password === password);
+
+      if (user) {
+        alert("Login berhasil!");
+        localStorage.setItem("isLoggedIn", "true");
+        window.location.href = "index.html";
+      } else {
+        alert("Email atau password salah.");
+      }
+    });
+  </script>
+
+</body>
+</html>

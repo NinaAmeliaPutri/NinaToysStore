@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Toko - Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6ec; /* Latar belakang pink lembut */
+      color: #333; /* Warna teks agar tetap terbaca di atas latar pink */
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Gradient pink soft */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333; /* Warna teks logo agar jelas di atas gradient pink */
+    }
+
+    nav {
+      background-color: #fff0f3; /* Navigasi dengan warna pink sangat muda */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    nav a {
+      color: #880033; /* Warna teks navigasi untuk kontras */
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91; /* Warna hover lebih cerah */
+    }
+
+    .shop-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .shop-section h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #333; /* Warna judul agar terbaca di atas latar pink */
+    }
+
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 30px;
+    }
+
+    .search-bar input {
+      width: 400px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background-color: #ffffff; /* Kartu produk putih untuk kontras */
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h3 {
+      margin: 0 0 10px;
+      font-size: 1.2em;
+      color: #333; /* Judul produk */
+    }
+
+    .product-info p {
+      margin: 0 0 10px;
+      color: #666; /* Harga produk */
+    }
+
+    .product-info button {
+      background-color: #ff9a9e; /* Tombol pink soft */
+      color: #333;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    .product-info button:hover {
+      background-color: #ff6f91; /* Hover tombol lebih cerah */
+    }
+
+    .back-button {
+      display: block;
+      margin: 40px auto 0;
+      padding: 12px 25px;
+      background-color: #ff9a9e;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+      width: fit-content;
+      transition: background-color 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #ff6f91;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+  <!-- Shop Section -->
+  <section class="shop-section">
+    <h1>Produk Kami</h1>
+
+
+    <!-- Product Grid -->
+    <div class="product-grid" id="productGrid">
+
+      <!-- Produk 1 -->
+      <div class="product-card" data-name="Hulahoop">
+        <img src="mainan1.jpeg" alt="Hulahoop">
+        <div class="product-info">
+          <h3>Hulahoop</h3>
+          <p>Harga: Rp 20.000</p>
+          <button onclick='addToCart("Hulahoop", 20000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 2 -->
+      <div class="product-card" data-name="Rubik">
+        <img src="mainan2.jpeg" alt="Rubik">
+        <div class="product-info">
+          <h3>Rubik</h3>
+          <p>Harga: Rp 25.000</p>
+          <button onclick='addToCart("Rubik", 25000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 3 -->
+      <div class="product-card" data-name="Pink Teddy Bear">
+        <img src="mainan3.jpeg" alt="Pink Teddy Bear">
+        <div class="product-info">
+          <h3>Pink Teddy Bear</h3>
+          <p>Harga: Rp 150.000</p>
+          <button onclick='addToCart("Pink Teddy Bear", 150000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 4 -->
+      <div class="product-card" data-name="Kartu Uno">
+        <img src="mainan4.jpeg" alt="Kartu Uno">
+        <div class="product-info">
+          <h3>Kartu Uno</h3>
+          <p>Harga: Rp 15.000</p>
+          <button onclick='addToCart("Kartu Uno", 15000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 5 -->
+      <div class="product-card" data-name="Kelereng">
+        <img src="mainan5.jpeg" alt="Kelereng">
+        <div class="product-info">
+          <h3>Kelereng</h3>
+          <p>Harga: Rp 10.000</p>
+          <button onclick='addToCart("Kelereng", 10000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 6 -->
+      <div class="product-card" data-name="Unicorns Slime">
+        <img src="mainan6.jpeg" alt="Unicorns Slime">
+        <div class="product-info">
+          <h3>Unicorns Slime</h3>
+          <p>Harga: Rp 50.000</p>
+          <button onclick='addToCart("Unicorns Slime", 50000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 7 -->
+      <div class="product-card" data-name="Clay">
+        <img src="mainan7.jpeg" alt="Clay">
+        <div class="product-info">
+          <h3>Clay</h3>
+          <p>Harga: Rp 8.000</p>
+          <button onclick='addToCart("Clay", 8000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 8 -->
+      <div class="product-card" data-name="Squishy Ice Cream">
+        <img src="mainan8.jpeg" alt="Squishy Ice Cream">
+        <div class="product-info">
+          <h3>Squishy Ice Cream</h3>
+          <p>Harga: Rp 35.000</p>
+          <button onclick='addToCart("Squishy Ice Cream", 35000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 9 -->
+      <div class="product-card" data-name="Istana Pasir">
+        <img src="mainan9.jpeg" alt="Istana Pasir">
+        <div class="product-info">
+          <h3>Istana Pasir</h3>
+          <p>Harga: Rp 65.000</p>
+          <button onclick='addToCart("Istana Pasir", 65000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 10 -->
+      <div class="product-card" data-name="Small Duck">
+        <img src="mainan10.jpeg" alt="Small Duck">
+        <div class="product-info">
+          <h3>Small Duck</h3>
+          <p>Harga: Rp 55.000</p>
+          <button onclick='addToCart("Small Duck", 55000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 11 -->
+      <div class="product-card" data-name="Dancing Cactus">
+        <img src="mainan11.jpeg" alt="Dancing Cactus">
+        <div class="product-info">
+          <h3>Dancing Cactus</h3>
+          <p>Harga: Rp 75.000</p>
+          <button onclick='addToCart("Dancing Cactus", 75000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 12 -->
+      <div class="product-card" data-name="Lego Blocks">
+        <img src="mainan12.jpeg" alt="Lego Blocks">
+        <div class="product-info">
+          <h3>Lego Blocks</h3>
+          <p>Harga: Rp 85.000</p>
+          <button onclick='addToCart("Lego Blocks", 85000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 13 -->
+      <div class="product-card" data-name="Jumping Kuda">
+        <img src="mainan13.jpeg" alt="Jumping Kuda">
+        <div class="product-info">
+          <h3>Jumping Kuda</h3>
+          <p>Harga: Rp 135.000</p>
+          <button onclick='addToCart("Jumping Kuda", 135000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 14 -->
+      <div class="product-card" data-name="Pop It Electronic">
+        <img src="mainan14.jpeg" alt="Pop It Electronic">
+        <div class="product-info">
+          <h3>Pop It Electronic</h3>
+          <p>Harga: Rp 30.000</p>
+          <button onclick='addToCart("Pop It Electronic", 30000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 15 -->
+      <div class="product-card" data-name="Butterflies Flying">
+        <img src="mainan15.jpeg" alt="Butterflies Flying">
+        <div class="product-info">
+          <h3>Butterflies Flying</h3>
+          <p>Harga: Rp 15.000</p>
+          <button onclick='addToCart("Butterflies Flying", 15000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 16 -->
+      <div class="product-card" data-name="Rubber Duck">
+        <img src="mainan16.jpeg" alt="Rubber Duck">
+        <div class="product-info">
+          <h3>Rubber Duck</h3>
+          <p>Harga: Rp 25.000</p>
+          <button onclick='addToCart("Rubber Duck", 25000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 17 -->
+      <div class="product-card" data-name="Rubber Ball">
+        <img src="mainan17.jpeg" alt="Rubber Ball">
+        <div class="product-info">
+          <h3>Rubber Ball</h3>
+          <p>Harga: Rp 15.000</p>
+          <button onclick='addToCart("Rubber Ball", 15000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 18 -->
+      <div class="product-card" data-name="Pop Pipes Led">
+        <img src="mainan18.jpeg" alt="Pop Pipes Led">
+        <div class="product-info">
+          <h3>Pop Pipes Led</h3>
+          <p>Harga: Rp 15.000</p>
+          <button onclick='addToCart("Pop Pipes Led", 15000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 19 -->
+      <div class="product-card" data-name="Chameleon Doll">
+        <img src="mainan19.jpeg" alt="Chameleon Doll">
+        <div class="product-info">
+          <h3>Chameleon Doll</h3>
+          <p>Harga: Rp 45.000</p>
+          <button onclick='addToCart("Chameleon Doll", 45000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+      <!-- Produk 20 -->
+      <div class="product-card" data-name="Barbie Cupcakes ">
+        <img src="mainan20.jpeg" alt="Barbie Cupcakes ">
+        <div class="product-info">
+          <h3>Barbie Cupcakes </h3>
+          <p>Harga: Rp 50.000</p>
+          <button onclick='addToCart("Barbie Cupcakes ", 50000)'>Tambah ke Keranjang</button>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="index.html" class="back-button">Kembali ke Beranda</a>
+  </section>
+
+  <script>
+    function addToCart(productName, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingProduct = cart.find(item => item.name === productName);
+      if (existingProduct) {
+        existingProduct.qty += 1;
+      } else {
+        cart.push({ name: productName, price: price, qty: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(productName + " telah ditambahkan ke keranjang!");
+    }
+
+    function filterProducts() {
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      const productGrid = document.getElementById("productGrid");
+      const products = productGrid.getElementsByClassName("product-card");
+
+      for (let i = 0; i < products.length; i++) {
+        const productName = products[i].getAttribute("data-name").toLowerCase();
+        if (productName.includes(input)) {
+          products[i].style.display = "";
+        } else {
+          products[i].style.display = "none";
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

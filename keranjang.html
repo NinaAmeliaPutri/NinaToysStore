@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Keranjang - Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6ec;
+      color: #333;
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    nav {
+      background-color: #fff0f3;
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    nav a {
+      color: #880033;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91;
+    }
+
+    .cart-section {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .cart-header {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2em;
+      color: #333;
+    }
+
+    .cart-empty {
+      text-align: center;
+      padding: 50px;
+      font-size: 1.2em;
+      color: #666;
+    }
+
+    .cart-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .cart-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      padding: 15px;
+      position: relative;
+    }
+
+    .cart-details h3 {
+      margin: 0 0 5px;
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    .cart-details p {
+      margin: 0;
+      font-size: 0.95em;
+      color: #666;
+    }
+
+    .cart-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .quantity-controls button {
+      background-color: #ff9a9e;
+      color: black;
+      border: none;
+      padding: 5px 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+    }
+
+    .quantity-controls button:hover {
+      background-color: #ff6f91;
+    }
+
+    .quantity-controls span {
+      min-width: 20px;
+      text-align: center;
+      font-weight: bold;
+    }
+
+    .remove-button {
+      background-color: transparent;
+      color: red;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .cart-total {
+      text-align: right;
+      margin-top: 30px;
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .checkout-button,
+    .back-button {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 12px 25px;
+      background-color: #ff9a9e;
+      color: #333;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background-color 0.3s ease;
+    }
+
+    .checkout-button:hover,
+    .back-button:hover {
+      background-color: #ff6f91;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+  <!-- Keranjang Section -->
+  <section class="cart-section">
+    <h1 class="cart-header">Keranjang Belanja</h1>
+
+    <div id="cart-content"></div>
+
+    <div class="cart-total" id="total-price">
+      Total: Rp 0
+    </div>
+
+    <button class="checkout-button" onclick="redirectToCheckout()">Lanjut ke Checkout</button>
+    <a href="toko.html" class="back-button">Kembali ke Toko</a>
+  </section>
+
+  <script>
+    function formatRupiah(angka) {
+      return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    function renderCart() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const cartContent = document.getElementById('cart-content');
+      const totalPriceDiv = document.getElementById('total-price');
+
+      if (cart.length === 0) {
+        cartContent.innerHTML = "<div class='cart-empty'>Keranjang belanja kosong.</div>";
+        totalPriceDiv.innerText = "Total: Rp 0";
+        return;
+      }
+
+      let total = 0;
+
+      cartContent.innerHTML = '';
+
+      cart.forEach((item, index) => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        const card = document.createElement('div');
+        card.className = 'cart-card';
+
+        card.innerHTML = `
+          <div class="cart-details">
+            <h3>${item.name}</h3>
+            <p>Harga: Rp ${formatRupiah(item.price)}</p>
+          </div>
+          <div class="cart-actions">
+            <div class="quantity-controls">
+              <button onclick="updateQuantity(${index}, -1)">−</button>
+              <span id="qty-${index}">${item.qty}</span>
+              <button onclick="updateQuantity(${index}, 1)">+</button>
+            </div>
+            <button class="remove-button" onclick="removeFromCart(${index})">X</button>
+          </div>
+        `;
+
+        cartContent.appendChild(card);
+      });
+
+      totalPriceDiv.innerText = "Total: Rp " + formatRupiah(total);
+    }
+
+    function updateQuantity(index, delta) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      cart[index].qty += delta;
+
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function removeFromCart(index) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      cart.splice(index, 1);
+      localStorage.setItem('cart', JSON.stringify(cart));
+      renderCart();
+    }
+
+    function redirectToCheckout() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      if (cart.length === 0) {
+        alert("Keranjang belanja kosong. Silakan tambahkan produk terlebih dahulu.");
+        return;
+      }
+      window.location.href = "checkout.html";
+    }
+
+    window.onload = renderCart;
+  </script>
+
+</body>
+</html>

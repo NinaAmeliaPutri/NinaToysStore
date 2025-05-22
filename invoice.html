@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tagihan - Nina Toys Store</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #ffe6ec; /* Latar belakang pink lembut */
+      color: #333; /* Warna teks gelap untuk kontras */
+    }
+
+    header {
+      background: linear-gradient(to right, #ff9a9e, #fad0c4); /* Gradient pink soft */
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 40px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-size: 1.5em;
+      font-weight: bold;
+      color: #333; /* Warna logo untuk kontras */
+    }
+
+    nav {
+      background-color: #fff0f3; /* Navigasi pink sangat muda */
+      padding: 12px 20px;
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.4);
+    }
+
+    nav a {
+      color: #880033; /* Warna teks navigasi untuk kontras */
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #ff6f91; /* Hover warna pink cerah */
+    }
+
+    .invoice-container {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 30px;
+      background-color: #ffffff; /* Kartu invoice putih untuk kontras */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .invoice-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .invoice-header h1 {
+      margin: 0;
+      font-size: 2em;
+      color: #333; /* Judul hitam untuk kontras */
+    }
+
+    .invoice-details {
+      margin-bottom: 20px;
+    }
+
+    .invoice-details p {
+      margin: 5px 0;
+      color: #333;
+    }
+
+    .invoice-details strong {
+      color: #ff6f91; /* Teks penting berwarna pink cerah */
+    }
+
+    .order-summary {
+      background-color: #fff0f3; /* Ringkasan pesanan dengan latar pink muda */
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #ffd7dc; /* Garis bawah pink pastel */
+    }
+
+    .total-price {
+      display: flex;
+      justify-content: space-between;
+      font-weight: bold;
+      font-size: 1.2em;
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #ffcad4;
+      color: #333;
+    }
+
+    .back-button {
+      display: inline-block;
+      margin-top: 30px;
+      padding: 12px 25px;
+      background-color: transparent;
+      color: #ff6f91;
+      border: 1px solid #ff6f91;
+      border-radius: 5px;
+      cursor: pointer;
+      text-decoration: none;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .back-button:hover {
+      background-color: #ff6f91;
+      color: white;
+    }
+
+    /* Catatan di Bawah Invoice */
+    .note-section {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 1em;
+      line-height: 1.5;
+      padding: 20px;
+      background-color: #fff0f3;
+      border-left: 4px solid #ff6f91;
+      color: #333;
+      border-radius: 8px;
+    }
+
+    .note-section strong {
+      color: #ff6f91;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="logo">
+      <img src="logo1.png" alt="Logo" />
+      <span>Nina Toys Store</span>
+    </div>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="index.html">Beranda</a>
+    <a href="tentang.html">Tentang</a>
+    <a href="kontak.html">Kontak</a>
+    <a href="toko.html">Toko</a>
+    <a href="keranjang.html">Keranjang</a>
+    <a href="checkout.html">Bayar</a>
+    <a href="invoice.html">Tagihan</a>
+    <a href="login.html">Masuk</a>
+    <a href="register.html">Daftar</a>
+  </nav>
+
+  <!-- Invoice Section -->
+  <section class="invoice-container">
+    <div class="invoice-header">
+      <h1>Invoice Pesanan</h1>
+      <p>ID Pesanan: INV-2025-001</p>
+      <p>Tanggal: 5 April 2025</p>
+    </div>
+
+    <div class="invoice-details">
+      <h2>Data Pengiriman</h2>
+      <p><strong>Nama:</strong> <span id="invoice-name">Nama Pelanggan</span></p>
+      <p><strong>Email:</strong> <span id="invoice-email">email@example.com</span></p>
+      <p><strong>Telepon:</strong> <span id="invoice-phone">081234567890</span></p>
+      <p><strong>Alamat:</strong> <span id="invoice-address">Jalan Contoh No. 123, Kota Contoh</span></p>
+      <p><strong>Metode Pembayaran:</strong> <span id="invoice-payment">Transfer Bank</span></p>
+    </div>
+
+    <div class="order-summary">
+      <h2>Ringkasan Pesanan</h2>
+      <div id="invoice-items"></div>
+      <div class="total-price">
+        <span>Total:</span>
+        <span id="invoice-total">Rp 0</span>
+      </div>
+    </div>
+
+    <!-- Catatan Tambahan -->
+    <div class="note-section">
+      <p><strong>Terima kasih telah berbelanja di Mamat Gun Store!</strong></p>
+      <p>Silakan lakukan pembayaran ke rekening berikut dalam waktu 1x24 jam agar pesanan diproses.</p>
+      <p><strong>No. Rekening:</strong> BCA 1234567890 a.n. Mamat Gun Store</p>
+      <p>Konfirmasi pembayaran melalui email kami di admin@mamatgunstore.com</p>
+    </div>
+
+    <a href="index.html" class="back-button">← Kembali ke Beranda</a>
+  </section>
+
+  <script>
+    function formatRupiah(angka) {
+      return angka.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+    }
+
+    window.onload = function () {
+      const orderData = JSON.parse(localStorage.getItem("order")) || {};
+
+      document.getElementById("invoice-name").textContent = orderData.name || "-";
+      document.getElementById("invoice-email").textContent = orderData.email || "-";
+      document.getElementById("invoice-phone").textContent = orderData.phone || "-";
+      document.getElementById("invoice-address").textContent = orderData.address || "-";
+      document.getElementById("invoice-payment").textContent = orderData.paymentLabel || "-";
+
+      const itemsContainer = document.getElementById("invoice-items");
+      const totalContainer = document.getElementById("invoice-total");
+
+      if (!orderData.cart || orderData.cart.length === 0) {
+        itemsContainer.innerHTML = "<p>Keranjang kosong.</p>";
+        totalContainer.textContent = "Rp 0";
+        return;
+      }
+
+      let total = 0;
+
+      orderData.cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        total += itemTotal;
+
+        const itemDiv = document.createElement("div");
+        itemDiv.className = "order-item";
+        itemDiv.innerHTML = `
+          <span>${item.name} x ${item.qty}</span>
+          <span>Rp ${formatRupiah(itemTotal)}</span>
+        `;
+        itemsContainer.appendChild(itemDiv);
+      });
+
+      totalContainer.textContent = "Rp " + formatRupiah(total);
+    };
+  </script>
+
+</body>
+</html>
